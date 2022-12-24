@@ -3,21 +3,22 @@ package models
 import "errors"
 
 type Fuzziemon struct {
+    Id               string
 	Name             string
 	EntryDescription string
 	EntryNumber      uint
 	Stats            [6]uint8
 }
 
-func NewFuzziemon(name string, entryDescription string, entryNumber uint, stats [6]uint8) *Fuzziemon {
+func NewFuzziemon(name string, entryDescription string, entryNumber uint, stats [6]uint8) (*Fuzziemon, error) {
 	if len(name) == 0 {
-		return nil
+		return nil, errors.New("Name cannot be empty");
 	}
 	if len(entryDescription) == 0 {
-		return nil
+		return nil, errors.New("Entry description cannot be empty");
 	}
 	if entryNumber <= 0 {
-		return nil
+		return nil, errors.New("Entry number cannot be empty");
 	}
 
 	return &Fuzziemon{
@@ -25,7 +26,7 @@ func NewFuzziemon(name string, entryDescription string, entryNumber uint, stats 
 		EntryDescription: entryDescription,
 		EntryNumber:      entryNumber,
 		Stats:            stats,
-	}
+	}, nil
 }
 
 func (fuzziemon *Fuzziemon) ToString() (string, error) {

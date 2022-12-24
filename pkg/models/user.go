@@ -3,10 +3,13 @@ package models
 import "errors"
 
 type User struct {
-	Username   string
-	Email      string
-	Password   string
-	Fuzziemons []Fuzziemon
+    Id          string
+	Username    string
+	Email       string
+	Password    string
+    Role        Role
+    Permissions []Permission 
+	Fuzziemons  []Fuzziemon
 }
 
 func NewUser(id string, username string, email string, password string, fuzziemons []Fuzziemon) *User {
