@@ -10,23 +10,13 @@ type Fuzziemon struct {
 	Stats            [6]uint8
 }
 
-func NewFuzziemon(name string, entryDescription string, entryNumber uint, stats [6]uint8) (*Fuzziemon, error) {
-	if len(name) == 0 {
-		return nil, errors.New("Name cannot be empty");
-	}
-	if len(entryDescription) == 0 {
-		return nil, errors.New("Entry description cannot be empty");
-	}
-	if entryNumber <= 0 {
-		return nil, errors.New("Entry number cannot be empty");
-	}
-
+func NewFuzziemon(name string, entryDescription string, entryNumber uint, stats [6]uint8) *Fuzziemon {
 	return &Fuzziemon{
 		Name:             name,
 		EntryDescription: entryDescription,
 		EntryNumber:      entryNumber,
 		Stats:            stats,
-	}, nil
+	}
 }
 
 func (fuzziemon *Fuzziemon) ToString() (string, error) {

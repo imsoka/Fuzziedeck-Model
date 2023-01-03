@@ -1,38 +1,37 @@
 package repositories
 
-import (
-	"strconv"
+import "github.com/imsoka/fuzziedeck-model/pkg/models"
 
-	"github.com/imsoka/fuzziedeck-model/pkg/models"
-)
 
-type InMemoryFuzziemonRepositoryInterface struct {
+type InMemoryFuzziemonRepository struct {
 
 }
 
-func (r InMemoryFuzziemonRepositoryInterface) GetAll() []*models.Fuzziemon {
-    var fuzziemons []*models.Fuzziemon;
-    var i int;
+func (r InMemoryFuzziemonRepository) GetAll() ([]*models.Fuzziemon, error) {
+    fzz := make([]*models.Fuzziemon, 0)
+    stats := [6]uint8{1, 2, 3, 4, 5, 6}
 
-    stats := [6]uint8{5, 20, 54, 92, 54, 82};
+    fzz = append(fzz, models.NewFuzziemon(
+        "Nuchitas",
+        "El primer fuzziemon",
+        1,
+        stats, 
+    ))
 
-    i = 0;
-    for i < 5 {
-        fuzziemon, _ := models.NewFuzziemon(
-            "Fuzziemon" + strconv.Itoa(i), 
-            "Este es un fuzziemon de prueba",
-            uint(i),
-            stats,
-        );
+    fzz = append(fzz, models.NewFuzziemon(
+        "Solete",
+        "El segundo fuzziemon",
+        2,
+        stats, 
+    ))
 
-        fuzziemons = append(fuzziemons, fuzziemon);
-        i++;
-    }
+    fzz = append(fzz, models.NewFuzziemon(
+        "Manguito",
+        "El tercer fuzziemon",
+        3,
+        stats, 
+    ))
 
-    return fuzziemons;
+    return fzz, nil
 }
 
-func(r InMemoryFuzziemonRepositoryInterface) GetById(id string) *models.Fuzziemon {
-
-    return nil;
-}

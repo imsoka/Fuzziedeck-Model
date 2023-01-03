@@ -5,11 +5,10 @@ import (
 )
 
 type FuzziemonRepositoryInterface interface {
-    GetAll() *[]models.Fuzziemon;
-    GetById(id string) *models.Fuzziemon;
-    GetByEntryNumber(entryNumber uint) *models.Fuzziemon;
-    GetByName(name string) *models.Fuzziemon;
-    CreateFuzziemon(name string, entryDescription string, entryNumber uint, stats [6]uint8) *models.Fuzziemon;
-    UpdateFuzziemon(name string, entryDescription string, entryNumber uint, stats [6]uint8) *models.Fuzziemon;
-    DeleteFuzziemon(fuzziemon *models.Fuzziemon) uint;
+    GetAll() (*[]models.Fuzziemon, error);
+    GetByEntryNumber(entryNumber uint) (*models.Fuzziemon, error);
+    GetByName(name string) (*models.Fuzziemon, error);
+    Create(name string, entryDescription string, entryNumber uint, stats [6]uint8) (*models.Fuzziemon, error);
+    Update(name string, entryDescription string, entryNumber uint, stats [6]uint8) (*models.Fuzziemon, error);
+    Delete(fuzziemon *models.Fuzziemon) (uint, error);
 }
